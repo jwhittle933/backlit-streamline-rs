@@ -1,14 +1,8 @@
 [package]
-name = "backlit-streamline"
+name = "streamline"
 version = "0.1.0"
 authors = ["Jonathan Whittle <jonathan.m.whittle@gmail.com>"]
 edition = "2018"
 
-[workspace]
-
 [dependencies]
-
-[dependencies.streamline]
-path = "core"
-
-[lib]
+byteorder = { version = "1", default-features = false }

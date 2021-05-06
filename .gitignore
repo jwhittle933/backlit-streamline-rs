@@ -1,4 +1,4 @@
 /target
-Cargo.lock
+core/Cargo.lock
 .idea
 .DS_Store
