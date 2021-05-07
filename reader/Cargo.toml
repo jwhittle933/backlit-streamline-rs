@@ -7,4 +7,4 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-streamline-core = { path = "../streamline-core", alias = "core" }
+core = { path = "../streamline-core", package = "streamline-core" }
