@@ -3,11 +3,9 @@ pub mod ftyp;
 pub mod moov;
 pub mod info;
 
-use boxtype::BoxType;
-use std::io::{Result, Write};
-
-const SMALL_HEADER: u64 = 8;
-const LARGE_HEADER: u64 = 16;
+use std::io::{Write, Result};
+use crate::io::ReadSeeker;
+use info::Info;
 
 pub trait Versioned {}
 
@@ -22,3 +20,6 @@ pub trait Stringer {}
 pub trait Boxed: Typed + Informed + Stringer + Write {}
 impl<T> Boxed for T where T: Typed + Informed + Stringer + Write {}
 
+pub fn see_payload<T: ReadSeeker>(mut r: &mut T, i: &Info) -> Result<u64> {
+    i.seek_payload(&mut r)
+}

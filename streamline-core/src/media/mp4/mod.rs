@@ -10,7 +10,7 @@ pub struct MP4<T: ReadWriteSeeker> {
 }
 
 impl<T: ReadWriteSeeker> MP4<T> {
-    pub fn new(mut r: T) -> MP4<T> {
+    pub fn new(r: T) -> MP4<T> {
         MP4 {
             r: BufReader::new(r),
         }

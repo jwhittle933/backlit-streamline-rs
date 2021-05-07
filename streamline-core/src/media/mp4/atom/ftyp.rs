@@ -3,29 +3,40 @@ use std::io::{Result, Write};
 use super::{Informed, Stringer, Typed};
 use super::info::Info;
 
-pub struct Ftyp<'a> {
-    info: &'a Info,
-    major_brand: [u8; 4],
+#[derive(Debug)]
+pub struct Ftyp {
+    info: Info,
+    major_brand: u32,
     minor_version: u32,
     compatible_brands: Vec<[u8; 4]>,
 }
 
-impl<'a> Informed for Ftyp<'a> {}
+impl Informed for Ftyp {}
 
-impl<'a> Typed for Ftyp<'a> {}
+impl Typed for Ftyp {}
 
-impl<'a> Stringer for Ftyp<'a> {}
+impl Stringer for Ftyp {}
 
-impl<'a> Write for Ftyp<'a> {
+impl Write for Ftyp {
     fn write(&mut self, buf: &[u8]) -> Result<usize> {
-        self.major_brand = buf[0..4].try_into().expect("slice with incorrect length");
+        self.major_brand = u32::from_be_bytes(buf[0..4].try_into().expect("slice with incorrect length"));
         self.minor_version = u32::from_be_bytes(buf[4..8].try_into().expect(""));
 
         Ok(buf.len())
     }
+
     fn flush(&mut self) -> Result<()> {
         Ok(())
     }
 }
 
-impl<'a> Ftyp<'a> {}
+impl Ftyp {
+    pub fn new(i: Info) -> Self {
+        Ftyp {
+            info: i,
+            major_brand: 0,
+            minor_version: 0,
+            compatible_brands: Vec::new(),
+        }
+    }
+}
