@@ -1,6 +1,7 @@
-use crate::media::mp4::atom::{Info, Informed, Stringer, Typed};
 use std::convert::TryInto;
 use std::io::{Result, Write};
+use super::{Informed, Stringer, Typed};
+use super::info::Info;
 
 pub struct Ftyp<'a> {
     info: &'a Info,

@@ -1,4 +1,5 @@
 /target
-core/Cargo.lock
-.idea
+streamline-core/Cargo.lock
+../.idea
 .DS_Store
+streamline-core/target

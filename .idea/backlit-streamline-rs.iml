@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="CPP_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/backlit-streamline-rs/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/bin/mp4/parser/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/api/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/reader/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/streamline-core/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/streamline-core/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+      <excludeFolder url="file://$MODULE_DIR$/bin/mp4/parser/target" />
+      <excludeFolder url="file://$MODULE_DIR$/backlit-streamline-rs/target" />
+      <excludeFolder url="file://$MODULE_DIR$/streamline-core/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
