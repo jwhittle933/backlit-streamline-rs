@@ -11,11 +11,15 @@ pub trait Versioned {}
 
 pub trait Flagged {}
 
-pub trait Typed {}
+pub trait Typed {
+    fn t(self) -> String;
+}
 
 pub trait Informed {}
 
-pub trait Stringer {}
+pub trait Stringer {
+    fn string(&self) -> String;
+}
 
 pub trait Boxed: Typed + Informed + Stringer + Write {}
 impl<T> Boxed for T where T: Typed + Informed + Stringer + Write {}

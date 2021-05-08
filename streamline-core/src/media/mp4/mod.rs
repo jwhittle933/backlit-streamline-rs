@@ -32,6 +32,14 @@ impl MP4<File> {
             Err(e) => Err(e),
         }
     }
+
+    fn read_full() {
+        // read all boxes and data
+    }
+
+    fn read_boxes() {
+        // read info for every box
+    }
 }
 
 #[cfg(test)]

@@ -8,13 +8,24 @@ const LARGE_HEADER: u64 = 8;
 #[derive(Debug)]
 pub struct Info {
     offset: u64,
-    size: u64,
+    pub size: u64,
     pub t: BoxType,
     header_size: u64,
     extend_to_eof: bool,
 }
 
-impl Stringer for Info {}
+impl Stringer for Info {
+    fn string(&self) -> String {
+        String::from(
+            format!(
+                "[{}] offset={}, size={}",
+                self.t.string(),
+                self.offset,
+                self.size,
+            )
+        )
+    }
+}
 
 impl Info {
     pub fn scan<T: ReadSeeker>(mut r: &mut T) -> Result<Info> {
@@ -22,12 +33,12 @@ impl Info {
         let size = Self::scan_size(&mut r)?;
         let name = Self::scan_name(&mut r)?;
 
-        Ok(Info{
+        Ok(Info {
             offset,
             size,
             t: name,
             header_size: SMALL_HEADER,
-            extend_to_eof: false
+            extend_to_eof: false,
         })
     }
 
