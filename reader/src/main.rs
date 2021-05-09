@@ -24,9 +24,10 @@ fn main() -> Result<()> {
     let mut ft = Ftyp::new(&info);
     let size = info.size;
     // io::copy(&mut br, &mut ft)?;
-    copy_n(&mut ft, &mut br, size);
-    println!("{}", ft.string());
-
+    match copy_n(&mut ft, &mut br, size) {
+        Ok(_) => println!("{}", ft.string()),
+        Err(e) => println!("{}", e)
+    };
 
     Ok(())
 }

@@ -1,4 +1,4 @@
-use std::io::{Read, Seek, Write};
+use std::io::{Read, Seek, Write, Result, copy};
 use std::str;
 
 pub trait ReadSeeker: Read + Seek {}
@@ -11,6 +11,7 @@ pub fn read_write_seeker<T: Read + Write + Seek>(t: T) -> impl ReadWriteSeeker {
     t
 }
 
-pub fn copy_n<W: Write, R: Read>(dst: &W, src: &mut R, n: u64) {
-    let taken = src.take(n);
+pub fn copy_n<W: Write, R: Read>(mut dst: &mut W, src: &mut R, n: u64) -> Result<u64>{
+    let mut taken = src.take(n);
+    copy(&mut taken, &mut dst)
 }
