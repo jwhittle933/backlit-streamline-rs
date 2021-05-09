@@ -3,24 +3,30 @@ use core::media::mp4::{
     atom::{
         info::Info,
         ftyp::Ftyp,
-        Stringer
+        Stringer,
     }
 };
+use core::io::copy_n;
 use std::fs::File;
-use std::io::{Result, BufReader, Write};
+use std::io;
+use io::{Result, BufReader};
+use core::media::mp4::atom::Sized;
 
 fn main() -> Result<()> {
     let mp4 = MP4::from_file_path("./examples/sample.mp4")?;
     println!("MP4: {:?}", mp4);
+    println!("MP4 valid: {}", mp4.valid());
 
     let f = File::open("./examples/sample.mp4")?;
-    let mut r = BufReader::new(f);
-    let info = Info::scan(&mut r)?;
+    let mut br = BufReader::new(f);
+    let info = Info::scan(&mut br)?;
 
-    let ft = Ftyp::new(info);
+    let mut ft = Ftyp::new(&info);
+    let size = info.size;
+    // io::copy(&mut br, &mut ft)?;
+    copy_n(&mut ft, &mut br, size);
     println!("{}", ft.string());
 
-    // let buf = [0; ft.info.size as usize];
 
     Ok(())
 }

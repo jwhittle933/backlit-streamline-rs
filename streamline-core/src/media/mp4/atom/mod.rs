@@ -1,7 +1,10 @@
 pub mod boxtype;
+pub mod info;
 pub mod ftyp;
 pub mod moov;
-pub mod info;
+pub mod free;
+pub mod mdat;
+pub mod skip;
 
 use std::io::{Write, Result};
 use crate::io::ReadSeeker;
@@ -19,6 +22,10 @@ pub trait Informed {}
 
 pub trait Stringer {
     fn string(&self) -> String;
+}
+
+pub trait Sized {
+    fn size(&self) -> u64;
 }
 
 pub trait Boxed: Typed + Informed + Stringer + Write {}

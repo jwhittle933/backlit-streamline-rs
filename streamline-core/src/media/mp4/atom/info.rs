@@ -37,7 +37,7 @@ impl Info {
             offset,
             size,
             t: name,
-            header_size: SMALL_HEADER,
+            header_size: SMALL_HEADER, // this may be LARGE_HEADER
             extend_to_eof: false,
         })
     }

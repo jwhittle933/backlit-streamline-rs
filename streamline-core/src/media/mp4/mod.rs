@@ -1,26 +1,31 @@
 pub mod atom;
 
 use std::fs::File;
+use std::option::Option;
 use std::io::{BufReader, Result, SeekFrom, Read, Write, Seek};
-use crate::io::{ReadWriteSeeker, read_write_seeker};
+use crate::io::{ReadWriteSeeker};
+use atom::ftyp::Ftyp;
 
 #[derive(Debug)]
-pub struct MP4<T: ReadWriteSeeker> {
+pub struct MP4<'a, T: ReadWriteSeeker> {
     r: BufReader<T>,
+    ftyp: Option<Ftyp<'a>>,
 }
 
-impl<T: ReadWriteSeeker> MP4<T> {
-    pub fn new(r: T) -> MP4<T> {
+impl<'a, T: ReadWriteSeeker> MP4<'a, T> {
+    pub fn new(r: T) -> MP4<'a, T> {
         MP4 {
             r: BufReader::new(r),
+            ftyp: Option::None,
         }
     }
 }
 
-impl MP4<File> {
-    pub fn from_file(f: File) -> MP4<File> {
+impl<'a> MP4<'a, File> {
+    pub fn from_file(f: File) -> MP4<'a, File> {
         MP4 {
             r: BufReader::new(f),
+            ftyp: Option::None,
         }
     }
 
@@ -28,8 +33,16 @@ impl MP4<File> {
         match File::open(path) {
             Ok(f) => Ok(MP4 {
                 r: BufReader::new(f),
+                ftyp: Option::None,
             }),
             Err(e) => Err(e),
+        }
+    }
+
+    pub fn valid(self) -> bool {
+        match self.ftyp {
+            Some(_) => true,
+            None => false
         }
     }
 
