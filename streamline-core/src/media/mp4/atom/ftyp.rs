@@ -38,7 +38,6 @@ impl<'a> Stringer for Ftyp<'a> {
 impl<'a> Write for Ftyp<'a> {
     fn write(&mut self, buf: &[u8]) -> Result<usize> {
         self.major_brand = buf[0..4].try_into().expect("could not covert slice to array");
-        println!("major={}", str::from_utf8(&self.major_brand).expect(""));
         self.minor_version = u32::from_be_bytes(buf[4..8].try_into().expect("count not convert buffer to u32"));
         self.written = true;
 
