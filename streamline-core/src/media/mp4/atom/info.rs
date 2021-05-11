@@ -2,15 +2,15 @@ use std::io::{Result, SeekFrom};
 use super::{boxtype::BoxType, Stringer};
 use crate::io::ReadSeeker;
 
-const SMALL_HEADER: u64 = 4;
-const LARGE_HEADER: u64 = 8;
+const SMALL_HEADER: u64 = 8;
+const LARGE_HEADER: u64 = 16;
 
 #[derive(Debug)]
 pub struct Info {
     offset: u64,
     pub size: u64,
     pub t: BoxType,
-    header_size: u64,
+    pub header_size: u64,
     extend_to_eof: bool,
 }
 
@@ -55,7 +55,7 @@ impl Info {
     }
 
     fn scan_small<T: ReadSeeker>(r: &mut T) -> Result<u64> {
-        let mut size = [0; SMALL_HEADER as usize];
+        let mut size = [0; 4];
         match r.read_exact(&mut size) {
             Ok(_) => Ok(u32::from_be_bytes(size) as u64),
             Err(e) => Err(e)
@@ -63,7 +63,7 @@ impl Info {
     }
 
     fn scan_large<T: ReadSeeker>(r: &mut T) -> Result<u64> {
-        let mut size = [0; LARGE_HEADER as usize];
+        let mut size = [0; 8];
         match r.read_exact(&mut size) {
             Ok(_) => Ok(u64::from_be_bytes(size)),
             Err(e) => Err(e)

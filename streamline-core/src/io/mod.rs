@@ -1,3 +1,5 @@
+pub mod pipe;
+
 use std::io::{Read, Seek, Write, Result, copy};
 use std::str;
 
