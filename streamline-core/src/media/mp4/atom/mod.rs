@@ -8,7 +8,6 @@ pub mod skip;
 
 use std::io::{Write, Result};
 use crate::io::ReadSeeker;
-use info::Info;
 
 pub trait Versioned {}
 
@@ -28,9 +27,17 @@ pub trait Sized {
     fn size(&self) -> u64;
 }
 
-pub trait Boxed: Typed + Informed + Stringer + Write {}
-impl<T> Boxed for T where T: Typed + Informed + Stringer + Write {}
+pub trait Boxed: Typed + Stringer + Write {}
+impl<T> Boxed for T where T: Typed + Stringer + Write {}
 
-pub fn see_payload<T: ReadSeeker>(mut r: &mut T, i: &Info) -> Result<u64> {
+pub fn see_payload<T: ReadSeeker>(mut r: &mut T, i: &info::Info) -> Result<u64> {
     i.seek_payload(&mut r)
+}
+
+#[derive(Debug)]
+pub enum Atom {
+    Ftyp(ftyp::Ftyp),
+    Moov(moov::Moov),
+    Free(free::Free),
+    Skip(skip::Skip),
 }

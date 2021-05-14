@@ -2,30 +2,49 @@ pub mod atom;
 
 use std::fs::File;
 use std::option::Option;
-use std::io::{BufReader, Result, SeekFrom, Read, Write, Seek};
+use std::io::{BufReader, Result, Write, Seek};
+use crate::io as coreio;
 use crate::io::{ReadWriteSeeker};
-use atom::ftyp::Ftyp;
+use atom::{
+    info::Info,
+    ftyp::Ftyp,
+    moov::Moov,
+    free::Free,
+    skip::Skip,
+    Boxed
+};
 
 #[derive(Debug)]
-pub struct MP4<'a, T: ReadWriteSeeker> {
-    r: BufReader<T>,
-    ftyp: Option<Ftyp<'a>>,
+pub enum Atom {
+    Ftyp(Ftyp),
+    Moov(Moov),
+    Free(Free),
+    Skip(Skip),
 }
 
-impl<'a, T: ReadWriteSeeker> MP4<'a, T> {
-    pub fn new(r: T) -> MP4<'a, T> {
+#[derive(Debug)]
+pub struct MP4<T: ReadWriteSeeker> {
+    r: BufReader<T>,
+    ftyp: Option<Ftyp>,
+    children: Vec<Atom>
+}
+
+impl<T: ReadWriteSeeker> MP4<T> {
+    pub fn new(r: T) -> MP4<T> {
         MP4 {
             r: BufReader::new(r),
             ftyp: Option::None,
+            children: Vec::new()
         }
     }
 }
 
-impl<'a> MP4<'a, File> {
-    pub fn from_file(f: File) -> MP4<'a, File> {
+impl MP4<File> {
+    pub fn from_file(f: File) -> MP4<File> {
         MP4 {
             r: BufReader::new(f),
             ftyp: Option::None,
+            children: Vec::new()
         }
     }
 
@@ -34,9 +53,14 @@ impl<'a> MP4<'a, File> {
             Ok(f) => Ok(MP4 {
                 r: BufReader::new(f),
                 ftyp: Option::None,
+                children: Vec::new()
             }),
             Err(e) => Err(e),
         }
+    }
+
+    pub fn header(&self) -> Option<&Ftyp> {
+        self.ftyp.as_ref()
     }
 
     pub fn valid(self) -> bool {
@@ -46,12 +70,22 @@ impl<'a> MP4<'a, File> {
         }
     }
 
-    fn read_full() {
-        // read all boxes and data
+    pub fn read_full(&mut self) -> Result<Ftyp> {
+        let mut ft = Ftyp::new(Info::scan(&mut self.r)?);
+
+        match coreio::copy_sized(&mut ft, &mut self.r) {
+            Ok(_) => Ok(ft),
+            Err(e) => Err(e)
+        }
     }
 
-    fn read_boxes() {
-        // read info for every box
+    pub fn read_box(&mut self) -> Result<impl Boxed> {
+        let mut ft = Ftyp::new(Info::scan(&mut self.r)?);
+
+        match coreio::copy_sized(&mut ft, &mut self.r) {
+            Ok(_) => Ok(ft),
+            Err(e) => Err(e)
+        }
     }
 }
 
