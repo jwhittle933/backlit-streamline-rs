@@ -2,7 +2,7 @@ pub mod atom;
 
 use std::fs::File;
 use std::option::Option;
-use std::io::{BufReader, Result, Write, Seek};
+use std::io::{BufReader, Result};
 use crate::io as coreio;
 use crate::io::{ReadWriteSeeker};
 use atom::{
@@ -25,7 +25,7 @@ pub enum Atom {
 #[derive(Debug)]
 pub struct MP4<T: ReadWriteSeeker> {
     r: BufReader<T>,
-    ftyp: Option<Ftyp>,
+    pub ftyp: Option<Ftyp>,
     children: Vec<Atom>
 }
 
@@ -80,11 +80,19 @@ impl MP4<File> {
     }
 
     pub fn read_box(&mut self) -> Result<impl Boxed> {
-        let mut ft = Ftyp::new(Info::scan(&mut self.r)?);
+        let mut b = Self::box_from(Info::scan(&mut self.r)?)?;
 
-        match coreio::copy_sized(&mut ft, &mut self.r) {
-            Ok(_) => Ok(ft),
+        match coreio::copy_sized(&mut b, &mut self.r) {
+            Ok(_) => Ok(b),
             Err(e) => Err(e)
+        }
+    }
+
+    fn box_from(i: Info) -> Result<impl Boxed> {
+        match i.t.string() {
+            "ftyp" => Ok(Ftyp::new(i)),
+            // "free" => Ok(Free::new(i)),
+            _ => panic!("box type unknown")
         }
     }
 }

@@ -7,6 +7,7 @@ use super::info::Info;
 
 #[derive(Debug)]
 pub struct Ftyp {
+    pub offset: u64,
     pub size: u64,
     pub major_brand: [u8; 4],
     pub minor_version: u32,
@@ -67,6 +68,7 @@ impl Sized for Ftyp {
 impl Ftyp {
     pub fn new(i: Info) -> Self {
         Ftyp {
+            offset: i.offset,
             size: i.size - 8,
             major_brand: [0; 4],
             minor_version: 0,

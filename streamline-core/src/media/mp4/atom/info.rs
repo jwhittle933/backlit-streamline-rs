@@ -7,7 +7,7 @@ const LARGE_HEADER: u64 = 16;
 
 #[derive(Debug)]
 pub struct Info {
-    offset: u64,
+    pub offset: u64,
     pub size: u64,
     pub t: BoxType,
     pub header_size: u64,
