@@ -1,11 +1,11 @@
-use std::io::{Result, SeekFrom};
 use super::{boxtype::BoxType, Stringer};
 use crate::io::ReadSeeker;
+use std::io::{Result, SeekFrom};
 
-const SMALL_HEADER: u64 = 8;
-const LARGE_HEADER: u64 = 16;
+pub const SMALL_HEADER: u64 = 8;
+pub const LARGE_HEADER: u64 = 16;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Info {
     pub offset: u64,
     pub size: u64,
@@ -16,14 +16,12 @@ pub struct Info {
 
 impl Stringer for Info {
     fn string(&self) -> String {
-        String::from(
-            format!(
-                "[{}] offset={}, size={}",
-                self.t.string(),
-                self.offset,
-                self.size,
-            )
-        )
+        String::from(format!(
+            "[{}] offset={}, size={}",
+            self.t.string(),
+            self.offset,
+            self.size,
+        ))
     }
 }
 
@@ -50,7 +48,7 @@ impl Info {
         match Self::scan_small(&mut r) {
             Ok(0) => Self::scan_large(&mut r),
             Ok(size) => Ok(size),
-            Err(e) => Err(e)
+            Err(e) => Err(e),
         }
     }
 
@@ -58,7 +56,7 @@ impl Info {
         let mut size = [0; 4];
         match r.read_exact(&mut size) {
             Ok(_) => Ok(u32::from_be_bytes(size) as u64),
-            Err(e) => Err(e)
+            Err(e) => Err(e),
         }
     }
 
@@ -66,7 +64,7 @@ impl Info {
         let mut size = [0; 8];
         match r.read_exact(&mut size) {
             Ok(_) => Ok(u64::from_be_bytes(size)),
-            Err(e) => Err(e)
+            Err(e) => Err(e),
         }
     }
 
@@ -74,7 +72,7 @@ impl Info {
         let mut name = [0; 4];
         match r.read_exact(&mut name) {
             Ok(_) => Ok(BoxType::new([name[0], name[1], name[2], name[3]])),
-            Err(e) => Err(e)
+            Err(e) => Err(e),
         }
     }
 }

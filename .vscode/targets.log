@@ -1,0 +1,433 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# This program built for i386-apple-darwin11.3.0
+
+# Make data base, printed on Wed Jul 13 06:09:54 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+UWhite = \033[4;37m
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# environment
+On_IRed = \033[0;101m
+# environment
+VSCODE_LOG_NATIVE = false
+# environment
+IRed = \033[0;91m
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile
+CURDIR := /Users/jonathanwhittle/Development/Backlit/backlit-platform-rust/backlit-streamline-rs
+# environment
+Black = \033[0;30m
+# makefile
+SHELL = /bin/sh
+# environment
+BIYellow = \033[1;93m
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+POPCORN = 🍿
+# environment
+_ = /usr/bin/make
+# environment
+Green = \033[0;32m
+# environment
+On_IPurple = \033[0;105m
+# environment
+White = \033[0;37m
+# environment
+Blue = \033[0;34m
+# makefile (from `Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# environment
+BIWhite = \033[1;97m
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+BIRed = \033[1;91m
+# environment
+__CFBundleIdentifier = com.microsoft.VSCode
+# environment
+On_White = \033[47m
+# environment
+BEERS = 🍻
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/13/8zzzdnwj0lngvy_cknr3ttgw0000gn/T/vscode-ipc-97e8f3e3-fcd8-4f36-91a7-709acff2ac72.sock
+# environment
+VSCODE_CWD = /Users/jonathanwhittle/Development/Backlit/backlit-platform-rust/backlit-streamline-rs
+# environment
+IGreen = \033[0;92m
+# environment
+Red = \033[0;31m
+# environment
+IWhite = \033[0;97m
+# environment
+PATH = /Users/jonathanwhittle/.qfc/bin:/usr/local/opt/libpq/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/jonathanwhittle/.cargo/bin:/Users/jonathanwhittle/go/bin:/usr/local/go/bin:/Users/jonathanwhittle/.cargo/bin:/Applications/Racket v7.5/bin:/usr/local/opt/protobuf@3.12/bin:~/Library/Application Support/Coursier/bin:~/Library/Python/3.7/bin:/Users/jonathanwhittle/.composer/vendor/bin:/Users/jonathanwhittle/Library/Python/3.8/bin:/Users/jonathanwhittle/.emacs.d/bin:/Users/jonathanwhittle/.rvm/bin
+# environment
+UYellow = \033[4;33m
+# environment
+SPACESHIP_VERSION = 3.11.2
+# environment
+GOPATH = /Users/jonathanwhittle/go
+# environment
+BBlack = \033[1;30m
+# environment
+LaunchInstanceID = 4362908D-1C82-4A60-B02D-263EFF883750
+# environment
+VSCODE_LOG_STACK = false
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# default
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# environment
+BGreen = \033[1;32m
+# environment
+IBlack = \033[0;90m
+# environment
+BCyan = \033[1;36m
+# environment
+BWhite = \033[1;37m
+# environment
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.pvYA5LgjgR/Listeners
+# automatic
+%F = $(notdir $%)
+# environment
+GOBIN = /Users/jonathanwhittle/go/bin
+# environment
+BBlue = \033[1;34m
+# environment
+UBlack = \033[4;30m
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+BICyan = \033[1;96m
+# environment
+IBlue = \033[0;94m
+# environment
+PWD = /Users/jonathanwhittle/Development/Backlit/backlit-platform-rust/backlit-streamline-rs
+# environment
+BYellow = \033[1;33m
+# environment
+On_Black = \033[40m
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+UBlue = \033[4;34m
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /Users/jonathanwhittle
+# default
+MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
+# environment
+VSCODE_CLI = 1
+# environment
+BRed = \033[1;31m
+# environment
+VSCODE_CODE_CACHE_PATH = /Users/jonathanwhittle/Library/Application Support/Code/CachedData/30d9c6cd9483b2cc586687151bcbcd635f373630
+# environment
+On_Blue = \033[44m
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+UCyan = \033[4;36m
+# environment
+ICyan = \033[0;96m
+# environment
+ZSH = /Users/jonathanwhittle/.oh-my-zsh
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+Purple = \033[0;35m
+# environment
+XPC_FLAGS = 0x0
+# environment
+COLORTERM = truecolor
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+FRUITY = 🍸
+# environment
+LC_TERMINAL = iTerm2
+# environment
+BEER = 🍺
+# environment
+URed = \033[4;31m
+# environment
+SHLVL = 3
+# environment
+On_Cyan = \033[46m
+# environment
+TERM_SESSION_ID = w0t0p0:A88C685F-1BFB-467F-B1EC-9C4520C80D7C
+# environment
+CARGO_NET_GIT_FETCH_WITH_CLI = true
+# default
+MAKE_VERSION := 3.81
+# environment
+BPurple = \033[1;35m
+# environment
+USER = jonathanwhittle
+# environment
+On_Red = \033[41m
+# environment
+BIPurple = \033[1;95m
+# makefile
+.DEFAULT_GOAL := check
+# default
+MAKECMDGOALS := all
+# environment
+UPurple = \033[4;35m
+# environment
+On_Purple = \033[45m
+# environment
+LESS = -R
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+BIBlack = \033[1;90m
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# default
+MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
+# environment
+On_Yellow = \033[43m
+# environment
+TERM_PROGRAM = iTerm.app
+# default
+.VARIABLES := 
+# environment
+TMPDIR = /var/folders/13/8zzzdnwj0lngvy_cknr3ttgw0000gn/T/
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /Users/jonathanwhittle/Library/Application Support/Code/1.68.1-main.sock
+# makefile
+MAKEFLAGS = Rrqp
+# environment
+MFLAGS = -Rrqp
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+TERM_PROGRAM_VERSION = 3.4.12
+# environment
+On_IGreen = \033[0;102m
+# environment
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.31637848.31637854.B8DE1FC9-34A0-4262-A3F3-BBA38E5665D1
+# environment
+LC_TERMINAL_VERSION = 3.4.12
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+On_IWhite = \033[0;107m
+# environment
+CHAMPAGNE = 🍾
+# automatic
++F = $(notdir $+)
+# environment
+MARTINI = 🍸
+# environment
+ITERM_SESSION_ID = w0t0p0:A88C685F-1BFB-467F-B1EC-9C4520C80D7C
+# environment
+UGreen = \033[4;32m
+# environment
+On_IYellow = \033[0;103m
+# environment
+COLORFGBG = 15;0
+# environment
+DINNER = 🍽
+# environment
+__CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+ITERM_PROFILE = Main
+# environment
+Cyan = \033[0;36m
+# environment
+Color_Off = \033[0m
+# environment
+Yellow = \033[0;33m
+# environment
+PAGER = less
+# environment
+LC_ALL = C
+# environment
+On_IBlack = \033[0;100m
+# environment
+SECURITYSESSIONID = 186a3
+# environment
+SPACESHIP_ROOT = /Users/jonathanwhittle/.oh-my-zsh/custom/themes/spaceship-prompt
+# automatic
+^F = $(notdir $^)
+# environment
+BIGreen = \033[1;92m
+# default
+SUFFIXES := 
+# environment
+On_ICyan = \033[0;106m
+# environment
+On_IBlue = \033[0;104m
+# default
+.INCLUDE_DIRS = /usr/local/include
+# environment
+MAKELEVEL := 0
+# environment
+IYellow = \033[0;93m
+# environment
+FZF_DEFAULT_OPTS = --height=40% --preview="cat {}" --preview-window=right:60%:wrap
+# environment
+LANG = C
+# environment
+TERM = xterm-256color
+# environment
+LOGNAME = jonathanwhittle
+# environment
+IPurple = \033[0;95m
+# environment
+On_Green = \033[42m
+# environment
+VSCODE_PID = 73938
+# environment
+BOTTLE = 🍼
+# environment
+BIBlue = \033[1;94m
+# variable set hash-table stats:
+# Load=151/1024=15%, Rehash=0, Collisions=24/175=14%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 16777223, inode 8470137): 15 files, no impossibilities.
+
+# 15 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+all:
+#  Command-line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+.PHONY: check build test reader api
+ 
+make: *** No rule to make target `all'.  Stop.
+
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+api:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 16):
+	cargo run --bin api
+	
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2021-05-07 21:04:04
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+test:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 10):
+	cargo build
+	
+
+build:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 7):
+	cargo build
+	
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+check:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 4):
+	cargo check
+	
+
+reader:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 13):
+	cargo run --bin reader
+	
+
+# files hash-table stats:
+# Load=10/1024=1%, Rehash=0, Collisions=0/27=0%
+# VPATH Search Paths
+
+# No `vpath' search paths.
+
+# No general (`VPATH' variable) search path.
+
+# # of strings in strcache: 1
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
+
+# Finished Make data base on Wed Jul 13 06:09:54 2022
+
+ 
