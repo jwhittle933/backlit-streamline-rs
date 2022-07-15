@@ -9,28 +9,17 @@ pub mod skip;
 
 use crate::io as coreio;
 use info::Info;
+use std::fmt;
 use std::io::{Result, Write};
 
-pub trait Versioned {}
-
-pub trait Flagged {}
-
 pub trait Typed {
-    fn t(self) -> String;
+    fn t(&self) -> String {
+        "unknown".to_string()
+    }
 }
 
-pub trait Informed {}
-
-pub trait Stringer {
-    fn string(&self) -> String;
-}
-
-pub trait Sized {
-    fn size(&self) -> u64;
-}
-
-pub trait Boxed: Typed + Stringer + Write + coreio::Sized {}
-impl<T> Boxed for T where T: Typed + Stringer + Write + coreio::Sized {}
+pub trait Boxed: Typed + fmt::Display + Write + coreio::Sized {}
+impl<T> Boxed for T where T: Typed + fmt::Display + Write + coreio::Sized {}
 
 pub fn seek_payload<T: coreio::ReadSeeker>(mut r: &mut T, i: &info::Info) -> Result<u64> {
     i.seek_payload(&mut r)

@@ -1,6 +1,6 @@
 use std::str;
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Copy, Eq, PartialEq)]
 pub struct BoxType {
     src: [u8; 4],
 }

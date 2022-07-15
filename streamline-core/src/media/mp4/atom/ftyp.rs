@@ -1,11 +1,13 @@
+use crate::{
+    io::Sized,
+    media::mp4::atom::{info::Info, Typed},
+};
 use std::convert::TryInto;
+use std::fmt;
 use std::io::{Result, Write};
 use std::str;
-use super::{Stringer, Typed};
-use crate::io::Sized;
-use super::info::Info;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Ftyp {
     pub offset: u64,
     pub size: u64,
@@ -16,30 +18,35 @@ pub struct Ftyp {
 }
 
 impl Typed for Ftyp {
-    fn t(self) -> String {
+    fn t(&self) -> String {
         String::from("ftyp")
     }
 }
 
-impl Stringer for Ftyp {
-    fn string(&self) -> String {
-        String::from(
-            format!(
-                "[ftyp] size={}, majorbrand={}, minorversion={}, written={}, compatible_brands={}",
-                self.size,
-                str::from_utf8(&self.major_brand).expect("failed to convert [u8; 4] to string"),
-                self.minor_version,
-                self.written,
-                vec_to_strings(&self.compatible_brands)
-            )
+impl fmt::Display for Ftyp {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(
+            f,
+            "[ftyp] size={}, majorbrand={}, minorversion={}, written={}, compatible_brands={}",
+            self.size,
+            str::from_utf8(&self.major_brand).expect("failed to convert [u8; 4] to string"),
+            self.minor_version,
+            self.written,
+            vec_to_strings(&self.compatible_brands)
         )
     }
 }
 
 impl Write for Ftyp {
     fn write(&mut self, buf: &[u8]) -> Result<usize> {
-        self.major_brand = buf[0..4].try_into().expect("could not covert slice to array");
-        self.minor_version = u32::from_be_bytes(buf[4..8].try_into().expect("count not convert buffer to u32"));
+        self.major_brand = buf[0..4]
+            .try_into()
+            .expect("could not covert slice to array");
+        self.minor_version = u32::from_be_bytes(
+            buf[4..8]
+                .try_into()
+                .expect("count not convert buffer to u32"),
+        );
 
         self.compatible_brands = Vec::new();
 
@@ -82,15 +89,15 @@ fn vec_to_strings(buf: &Vec<[u8; 4]>) -> String {
     let mut out: Vec<&str> = Vec::new();
 
     buf.into_iter().for_each(|x| {
-       out.push(u8_to_string(x));
+        out.push(u8_to_string(x));
     });
 
-   out.join(",")
+    out.join(",")
 }
 
 fn u8_to_string(buf: &[u8; 4]) -> &str {
     match str::from_utf8(buf) {
-        Ok(s)  => s,
-        Err(_) => "unknown"
+        Ok(s) => s,
+        Err(_) => "unknown",
     }
 }

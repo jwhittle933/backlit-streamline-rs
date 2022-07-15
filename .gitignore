@@ -1,5 +1,5 @@
 /target
 streamline-core/Cargo.lock
-../.idea
+.vscode
 .DS_Store
 streamline-core/target

@@ -92,6 +92,7 @@ impl MP4<File> {
         }
     }
 
+    // TODO: no more impl Boxed
     fn box_from(i: Info) -> Result<impl Boxed> {
         match i.t.string().as_str() {
             "ftyp" => Ok(Ftyp::new(i)),

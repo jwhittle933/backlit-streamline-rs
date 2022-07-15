@@ -1,26 +1,28 @@
-use std::io::{Result, Write};
-use super::{Stringer, Typed};
 use super::info::Info;
+use super::Typed;
 use crate::io::Sized;
+use std::fmt;
+use std::io::{Result, Write};
 
 #[derive(Debug)]
 pub struct Free {
-    offset: u64,
-    size: u64,
+    pub offset: u64,
+    pub size: u64,
+    pub data: Vec<u8>,
 }
 
 impl Typed for Free {
-    fn t(self) -> String {
+    fn t(&self) -> String {
         String::from("ftyp")
     }
 }
 
-impl Stringer for Free {
-    fn string(&self) -> String {
-        String::from(
-            format!(
-                "[free]",
-            )
+impl fmt::Display for Free {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(
+            f,
+            "[free] offset={}, size={}, data={:?}",
+            self.offset, self.size, self.data
         )
     }
 }
@@ -46,6 +48,7 @@ impl Free {
         Free {
             offset: i.offset,
             size: i.size - 8,
+            data: Vec::new(),
         }
     }
 }

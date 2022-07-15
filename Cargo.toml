@@ -2,6 +2,5 @@
 
 members = [
     "streamline-core",
-    "api",
     "reader"
 ]
