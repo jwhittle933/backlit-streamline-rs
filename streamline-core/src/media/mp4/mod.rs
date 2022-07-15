@@ -17,6 +17,7 @@ pub enum Atom {
     Skip(Skip),
 }
 
+/// An MP4 handle around a reader.
 #[derive(Debug)]
 pub struct MP4<T: ReadWriteSeeker> {
     r: BufReader<T>,

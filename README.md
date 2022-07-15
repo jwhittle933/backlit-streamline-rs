@@ -2,8 +2,6 @@
 
 # RFC
 ## Introduction
-The goal of this library is to make it easier for new programs to use the functionality of `ffmpeg` without making system calls. Most existing solutions do just that (see [here](https://github.com/u2takey/ffmpeg-go/blob/master/run.go#L254) for example), which requires your VM/machine/docker to include that as a system dependency. 
-
 The following high-level features are central to the initial usability of this library:
 1. The API should have little to no "paperwork". Libaries at this level of complexity tend to require all kinds of setup before you can do what you want. There should a usability derived from elegance and simplicity. Something as simple as `MP4::from_stream(stream).shorten(Duration::from_secs(5)`.
 2. Data streams not bulk file content. This will enable operations on larger data files. File I/O is the concern of a program, not a library.
