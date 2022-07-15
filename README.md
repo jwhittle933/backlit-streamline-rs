@@ -3,7 +3,7 @@
 # RFC
 ## Introduction
 The following high-level features are central to the initial usability of this library:
-1. The API should have little to no "paperwork". Libaries at this level of complexity tend to require all kinds of setup before you can do what you want. There should a usability derived from elegance and simplicity. Something as simple as `MP4::from_stream(stream).shorten(Duration::from_secs(5)`.
+1. The API should have little to no "paperwork". Libraries at this level of complexity tend to require all kinds of setup before you can do what you want. There should a usability derived from elegance and simplicity. Something as simple as `MP4::from_stream(stream).shorten(Duration::from_secs(5)`.
 2. Data streams not bulk file content. This will enable operations on larger data files. File I/O is the concern of a program, not a library.
 3. Should be able to convert an MPEG-4 to an MPEG-3.
 4. Should be able to trim MPEG-3 and MPEG-4.
