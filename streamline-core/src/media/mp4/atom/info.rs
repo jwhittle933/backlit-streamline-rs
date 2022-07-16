@@ -71,3 +71,7 @@ impl Info {
             .map(|_op| BoxType::new([name[0], name[1], name[2], name[3]]))
     }
 }
+
+pub trait FromInfo {
+    fn from_info(i: Info) -> Self;
+}

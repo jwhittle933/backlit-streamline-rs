@@ -1,11 +1,28 @@
 pub mod boxtype;
+pub mod cdat;
+pub mod dinf;
 pub mod free;
+pub mod frma;
 pub mod ftyp;
+pub mod hdlr;
 pub mod info;
 pub mod mdat;
+pub mod meta;
 pub mod moov;
+pub mod schi;
+pub mod schm;
 pub mod sidx;
+pub mod sinf;
 pub mod skip;
+pub mod udta;
+
+pub use dinf::Dinf;
+pub use frma::Frma;
+pub use hdlr::Hdlr;
+pub use schi::Schi;
+pub use schm::Schm;
+pub use sinf::Sinf;
+pub use streamline_macros::full_box;
 
 use crate::io as coreio;
 use info::Info;

@@ -1,13 +1,14 @@
-use super::info::Info;
-use super::Typed;
-use crate::io::Sized;
+use crate::{
+    io::Sized,
+    media::mp4::{atom::Typed, Info},
+};
 use std::fmt;
 use std::io::{Result, Write};
 
+/// ISO BMFF free box
 #[derive(Debug)]
 pub struct Free {
-    pub offset: u64,
-    pub size: u64,
+    pub info: Info,
     pub data: Vec<u8>,
 }
 
@@ -19,11 +20,7 @@ impl Typed for Free {
 
 impl fmt::Display for Free {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(
-            f,
-            "[free] offset={}, size={}, data={:?}",
-            self.offset, self.size, self.data
-        )
+        write!(f, "[free] {}, data={:?}", self.info, self.data)
     }
 }
 
@@ -39,15 +36,14 @@ impl Write for Free {
 
 impl Sized for Free {
     fn size(&self) -> u64 {
-        self.size
+        self.info.size
     }
 }
 
 impl Free {
     pub fn new(i: Info) -> Self {
         Free {
-            offset: i.offset,
-            size: i.size - 8,
+            info: i,
             data: Vec::new(),
         }
     }

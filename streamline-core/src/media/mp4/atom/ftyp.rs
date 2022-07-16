@@ -7,6 +7,41 @@ use std::fmt;
 use std::io::{Result, Write};
 use std::str;
 
+/// ISO BMFF `ftyp` box
+///
+/// Files written to this version of this specification must contain a file‐type box.
+/// For compatibility with an earlier version of this specification, files may be
+/// conformant to this specification and not contain a file‐ type box. Files with
+/// no file‐type box should be read as if they contained an FTYP box with Major_brand='mp41',
+/// minor_version=0, and the single compatible brand 'mp41'.
+///
+/// A media‐file structured to this part of this specification may be compatible with
+/// more than one detailed specification, and it is therefore not always possible to
+/// speak of a single ‘type’ or ‘brand’ for the file. This means that the utility of
+/// the file name extension and Multipurpose Internet Mail Extension (MIME) type are
+/// somewhat reduced.
+///
+/// This box must be placed as early as possible in the file (e.g. after any obligatory
+/// signature, but before any significant variable‐size boxes such as a Movie Box, Media
+/// Data Box, or Free Space). It identifies which specification is the ‘best use’ of the
+/// file, and a minor version of that specification; and also a set of other specifications
+/// to which the file complies. Readers implementing this format should attempt to read files
+/// that are marked as compatible with any of the specifications that the reader implements.
+/// Any incompatible change in a specification should therefore register a new ‘brand’ identifier
+/// to identify files conformant to the new specification.
+///
+/// The minor version is informative only. It does not appear for compatible‐brands, and must not
+/// be used to determine the conformance of a file to a standard. It may allow more precise
+/// identification of the major specification, for inspection, debugging, or improved decoding.
+///
+/// Files would normally be externally identified (e.g. with a file extension or mime type) that
+/// identifies the ‘best use’ (major brand), or the brand that the author believes will provide
+/// the greatest compatibility.
+///
+/// This section of this specification does not define any brands. However, see subclause 6.3 below
+/// for brands for files conformant to the whole specification and not just this section. All file
+/// format brands defined in this specification are included in Annex E with a summary of which
+/// features they require.
 #[derive(Debug, Clone)]
 pub struct Ftyp {
     pub offset: u64,
