@@ -1,13 +1,14 @@
+pub mod idat;
 pub mod iinf;
 pub mod iloc;
+pub mod ipro;
+pub mod iref;
 pub mod pitm;
 pub mod xml;
 
-pub use iinf::Iinf;
-pub use pitm::Pitm;
-
+pub use self::{idat::Idat, iinf::Iinf, iloc::Iloc, ipro::Ipro, iref::Iref, pitm::Pitm};
 use crate::mp4::{
-    atom::{full_box, Dinf, Hdlr},
+    atom::{full_box, Dinf, Hdlr, Ipmc},
     Info,
 };
 use std::io::{Result, Write};
@@ -43,6 +44,13 @@ pub struct Meta {
     pub hdlr: Option<Hdlr>,
     pub pitm: Option<Pitm>,
     pub dinf: Option<Dinf>,
+    pub iloc: Option<Iloc>,
+    pub ipro: Option<Ipro>,
+    pub ipmc: Option<Ipmc>,
+    pub iref: Option<Iref>,
+    pub idat: Option<Idat>,
+    /// Other Boxes
+    pub boxes: Vec<u8>,
 }
 
 impl Write for Meta {

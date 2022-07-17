@@ -1,3 +1,4 @@
+pub mod fdel;
 pub mod infe;
 
 use crate::mp4::atom::{full_box, Info};
@@ -47,6 +48,7 @@ use crate::mp4::atom::{full_box, Info};
 #[derive(Debug, Clone)]
 pub struct Iinf {
     pub info: Info,
+    /// If version is 0, `entry_count` will be 16 bits. Otherwise, 32 bits.
     pub entry_count: u32,
     pub entries: Vec<infe::Infe>,
 }
