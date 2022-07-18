@@ -7,7 +7,7 @@ The following high-level features are central to the initial usability of this l
 2. Data streams not bulk file content. This will enable operations on larger data files. File I/O is the concern of a program, not a library.
 3. Should be able to convert an MPEG-4 to an MPEG-3.
 4. Should be able to trim MPEG-3 and MPEG-4.
-5. The documentation for the library and every Atom in it should function as a replacement for the ISO/IEC specs. As such, the documentation from the official specs should be included in doc comments for each box, along with addition information gleaned over time. This will remove part of the entry barrier for working with these data structures. 
+5. The documentation for the library and every Atom in it should function as a replacement for the ISO/IEC specs. As such, the documentation from the official specs should be included in doc comments for each box, along with additional information gleaned over time. This will remove part of the entry barrier for working with these data structures. 
 
 ## Motivation
 The motivation for creating this library is to make it easier for new programs to have the functionality of `ffmpeg` without making system calls. Most existing solutions [invoke an installed binary](https://crates.io/keywords/ffmpeg), which requires your VM/machine/docker to include that as a system dependency. Others [create C bindings](https://crates.io/crates/rusty_ffmpeg), which raises concerns around safety.
