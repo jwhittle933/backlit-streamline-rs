@@ -1,17 +1,14 @@
-use crate::media::mp4::Info;
+use crate::media::mp4::atom::{full_box, Info};
 
 /// `cprt` Copyright
 ///
 /// The Copyright box contains a copyright declaration which applies to the entire presentation,
 /// when contained within the Movie Box, or, when contained in a track, to that entire track.
 /// There may be multiple copyright boxes using different language codes.
+#[full_box]
 #[derive(Debug, Clone)]
 pub struct Cprt {
     pub info: Info,
-    /// `version` is an integer that specifies the version of this box
-    /// (0 or 1 in this specification)
-    pub version: u8,
-    pub flags: u32,
     /// pad is exactly 1 bit
     pub pad: u8,
     /// language declares the language code for the following text. See ISO 639‐2/T

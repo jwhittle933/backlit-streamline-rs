@@ -1,4 +1,6 @@
 pub mod cprt;
+pub mod hinf;
+pub mod hnti;
 pub mod ilst;
 pub mod kind;
 pub mod strk;
@@ -6,6 +8,8 @@ pub mod tsel;
 
 use crate::mp4::Info;
 use std::io::{Result, Write};
+
+pub use self::{cprt::Cprt, hinf::Hinf, hnti::Hnti, ilst::Ilst, kind::Kind, tsel::Tsel};
 
 /// `udta` User Data
 ///
@@ -19,9 +23,12 @@ use std::io::{Result, Write};
 #[derive(Debug, Clone)]
 pub struct Udta {
     pub info: Info,
-    pub cprt: Option<cprt::Cprt>,
-    pub ilst: Option<ilst::Ilst>,
-    pub kind: Option<kind::Kind>,
+    pub cprt: Option<Cprt>,
+    pub ilst: Option<Ilst>,
+    pub kind: Option<Kind>,
+    pub tsel: Option<Tsel>,
+    pub hnti: Option<Hnti>,
+    pub hinf: Option<Hinf>,
 }
 
 impl std::fmt::Display for Udta {
