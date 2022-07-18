@@ -1,6 +1,7 @@
 pub mod cprt;
 pub mod ilst;
 pub mod kind;
+pub mod strk;
 pub mod tsel;
 
 use crate::mp4::Info;

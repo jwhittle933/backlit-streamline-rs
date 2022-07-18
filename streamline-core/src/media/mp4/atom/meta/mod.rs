@@ -1,3 +1,4 @@
+pub mod fiin;
 pub mod idat;
 pub mod iinf;
 pub mod iloc;

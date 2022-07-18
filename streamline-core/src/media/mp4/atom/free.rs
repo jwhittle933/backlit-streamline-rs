@@ -6,7 +6,7 @@ use std::fmt;
 use std::io::{Result, Write};
 
 /// ISO BMFF free box
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Free {
     pub info: Info,
     pub data: Vec<u8>,
